@@ -133,6 +133,7 @@ def get_current_directors(number):
                 'officer_id': officer_id
             })
     return directors
+#a
 
 
 def get_current_pscs(number):
@@ -287,7 +288,7 @@ if st.session_state.step == 'input':
         max_chars=8
     ).strip().upper()
 
-    if st.button("Search Company", type="primary"):
+    if st.button("Search Company", type="primary", key="search_company_btn"):
         if company_number:
             with st.spinner("Fetching company information..."):
                 company = get_company_info(company_number)
@@ -428,11 +429,11 @@ elif st.session_state.step == 'review_matches':
 
     # Confirm button
     st.markdown("---")
-    if st.button("✅ Confirm Selections & View Results", type="primary"):
+    if st.button("✅ Confirm Selections & View Results", type="primary", key="confirm_btn"):
         st.session_state.step = 'show_results'
         st.rerun()
 
-    if st.button("← Start Over"):
+    if st.button("← Start Over", key="start_over_btn"):
         st.session_state.clear()
         st.rerun()
 
@@ -522,6 +523,6 @@ elif st.session_state.step == 'show_results':
                             st.markdown(f"- {co}")
 
         st.markdown("---")
-        if st.button("🔄 Search Another Company", type="primary"):
+        if st.button("🔄 Search Another Company", type="primary", key="search_again_btn"):
             st.session_state.clear()
             st.rerun()
